@@ -1,24 +1,34 @@
 //(function($) {
 var Foods = Backbone.Model.extend({
+	defaults: {
+		name: '',
+		calories: 0
+	},
 	initialize: function() {
 		//set listener for model changes
 		this.on('change', function() {
-			console.log('Model values changed');
+			console.log('Model values changed: ' + this.name + this.calories);
 		});
 	}
-})
+});
 
 var AppView = Backbone.View.extend({
-	el: $('#search'),
+	el: $('#results'),
 	initialize: function() {
 		_.bindAll(this, 'render');
-		this.render();
+		this.listenTo(this.model, 'change', this.render);
 	},
 	events: {
+		'keypress #fooditem': 'updateOnEnter'
 	},
 	render: function() {
-		$(this.el).append("<div id='heading'><h2>Health Tracker</h2></div>");
-		$(this.el).append("<form><label>Enter a food item to search for: </label><input type='text' id='fooditem'></form>")
+		$(this.el).append("<div>" + this.model.name + "</div>");
+	},
+	updateOnEnter: function(e) {
+		if (e.which === 13) {
+			var value = $('#fooditem').val().trim();
+			this.model.set("name", value);
+		}
 	}
 });
 var myFood = new Foods();
