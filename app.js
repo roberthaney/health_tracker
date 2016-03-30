@@ -1,28 +1,32 @@
-//(function($) {
-var Foods = Backbone.Model.extend({
+var app = {};
+
+app.Foods = Backbone.Model.extend({
+	initialize: function() {
+		console.log("Model initialized");
+		//set listener for model changes
+		this.on('change', function() {
+			console.log('Model values changed');
+		});
+	}, 
 	defaults: {
 		name: '',
 		calories: 0
-	},
-	initialize: function() {
-		//set listener for model changes
-		this.on('change', function() {
-			console.log('Model values changed: ' + this.name + this.calories);
-		});
 	}
 });
 
-var AppView = Backbone.View.extend({
+app.AppView = Backbone.View.extend({
 	el: $('#results'),
 	initialize: function() {
+		console.log("View initialized");
 		_.bindAll(this, 'render');
 		this.listenTo(this.model, 'change', this.render);
+		this.render();
 	},
 	events: {
 		'keypress #fooditem': 'updateOnEnter'
 	},
 	render: function() {
-		$(this.el).append("<div>" + this.model.name + "</div>");
+		$(this.el).html("<div>" + this.model.get('name') + " " + this.model.get('calories') + "</div>");
 	},
 	updateOnEnter: function(e) {
 		if (e.which === 13) {
@@ -31,6 +35,13 @@ var AppView = Backbone.View.extend({
 		}
 	}
 });
-var myFood = new Foods();
-var appView = new AppView({model: myFood});
-//})(jQuery);
+
+var myFood = new app.Foods({name: 'cake', calories: 500});
+var appView = new app.AppView({model: myFood});
+//check attributes of Foods instance
+console.log(myFood.attributes);
+//change attributes test
+myFood.set('name', 'cookie');
+console.log(myFood.attributes);
+
+

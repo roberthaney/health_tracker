@@ -1,5 +1,14 @@
 #heading {
+	padding-top: 1px;
 	background: #e6f2ff;
 	color: #000000;
 	text-align: center;
+}
+
+#calories-form {
+	padding-top: 5px;
+}
+
+footer {
+	
 }
