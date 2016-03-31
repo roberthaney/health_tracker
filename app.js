@@ -26,7 +26,8 @@ app.AppView = Backbone.View.extend({
 		'keypress #fooditem': 'updateOnEnter'
 	},
 	render: function() {
-		$(this.el).html("<div>" + this.model.get('name') + " " + this.model.get('calories') + "</div>");
+		$(this.el).html("<div class='food-result'><strong>Food item:</strong> " + this.model.get('name') + "</div>");
+		$(this.el).append("<div class='food-result'><strong>Calories:</strong> " + this.model.get('calories') + "</div>");
 	},
 	updateOnEnter: function(e) {
 		if (e.which === 13) {
