@@ -1,28 +1,34 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Health Tracker</title>
-	<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Health Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id='heading'>
-		<h2>Health Tracker</h2>
-	</div>
-	<div id='calories-form'>
-		<form><label>Enter a food item to search for: </label><input type='text' id='fooditem'></form>
-	</div>
-	<h3 id="results-header">Results of search</h3>
-	<div id="results">
-	</div>
+  <section id="healthapp">
+    <header id="heading">
+      <h2>Health Tracker</h2>
+      <form id="calories-form"><label>Enter a food item: </label><input type="text" id="fooditem" placeholder="Enter food item here"></form>
+    </header>
+    <section id="main">
+      <ul id="food-list"></ul>
+    </section>
+  </section>
 
-	<footer>
-		<div></div>
-	</footer>
-	
-    <script src="jquery.min.js"></script>
-    <script src="underscore-min.js"></script>
-   	<script src="backbone-min.js"></script>
-	<script src="app.js"></script>
+  <script type="text/template" id="item-template">
+    <div class="view">
+      <h5>Food item: </h5><p><%- title %></p>
+    </div>
+  </script>
+
+  <script src="jquery.min.js"></script>
+  <script src="underscore-min.js"></script>
+  <script src="backbone-min.js"></script>
+  <script src="backbone.localStorage-min.js"></script>  
+  <script src="app.js"></script>
+
+
+  
 </body>
 </html>
