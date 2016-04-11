@@ -21,6 +21,24 @@
 	padding-bottom: 5px;
 }
 
+.view {
+	padding-bottom: 20px;
+}
+
+.view p {
+	display: inline;
+	padding-right: 10px;
+}
+
+.view span {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
 .destroy {
-	font-size: 9px;
+	font-size: 10px;
+	border: 1px solid gray;
+	display: block;
+	background-color: #ffffcc;
+	margin-left: 0;
 }
