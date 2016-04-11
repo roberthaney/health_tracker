@@ -15,9 +15,21 @@ var app = {};
     app.FoodItemView = Backbone.View.extend({
       tagname: 'li',
       template: _.template($('#item-template').html()),
+      initialize: function() {
+        //remove destroyed model from collection
+        this.model.on('destroy', this.remove, this);
+      },
       render: function() {
         this.$el.html(this.template(this.model.toJSON()));
         return this; 
+      }, 
+      events: {
+        //listener for remove button
+        'click .destroy': 'destroy'
+      }, 
+      destroy: function() {
+        //issue command to remove model linked to view
+        this.model.destroy();
       }
     });
 
