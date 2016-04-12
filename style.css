@@ -35,6 +35,10 @@
 	font-weight: bold;
 }
 
+#cals {
+	padding-left: 15px;
+}
+
 .destroy {
 	font-size: 10px;
 	border: 1px solid gray;
