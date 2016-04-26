@@ -1,5 +1,6 @@
 var app = {};
-    
+var totalCalories = 0;
+
     app.FoodItem = Backbone.Model.extend({
       defaults: {
         title: '',
@@ -24,12 +25,17 @@ var app = {};
         return this; 
       }, 
       events: {
-        //listener for remove button
-        'click .destroy': 'destroy'
+        //listener for remove and total buttons
+        'click .destroy': 'destroy',
+        'click .total': 'addToTotal'
       }, 
       destroy: function() {
         //issue command to remove model linked to view
         this.model.destroy();
+      },
+      addToTotal: function() {
+        totalCalories += this.model.get('calories');
+        app.appView.render();
       }
     });
 
@@ -57,15 +63,20 @@ var app = {};
         var view = new app.FoodItemView({model: fooditem});
         $('#food-list').append(view.render().el);
       },
-      //currently only returns value of input for food item along with default calories value
+      //currently only returns value of input for food item along with arbitrary calories value
       newAttributes: function() {
         return {
           title: this.input.val().trim(),
-          calories: 0
+          calories: 10
         }
+      },
+      render: function() {
+        var calorieString = '<p>' +  totalCalories + '</p>';
+        $('#calorie-intake').html(calorieString);
       }
     });
 
   //instantiate
   app.FoodList = new app.FoodList();
   app.appView = new app.AppView();
+

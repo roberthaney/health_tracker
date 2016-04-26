@@ -46,3 +46,20 @@
 	background-color: #ffffcc;
 	margin-left: 0;
 }
+
+.total {
+	font-size: 10px;
+	border: 1px solid gray;
+	display: block;
+	background-color: #ffecb3;
+	margin-left: 0;
+	margin-top: 5px;
+}
+
+#intake-label {
+	text-align: center;
+}
+
+#calorie-intake {
+	text-align: center;
+}

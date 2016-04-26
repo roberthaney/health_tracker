@@ -14,12 +14,17 @@
     <section id="main">
       <ul id="food-list"></ul>
     </section>
+    <section>
+      <h3 id='intake-label'>Total calories</h3>
+      <div id="calorie-intake"></div>
+    </section>
   </section>
 
   <script type="text/template" id="item-template">
     <div class="view">
       <p><span>Food item: </span><%- title %><span id ="cals">Calories: </span><%- calories %></p>
       <button class="destroy">Remove</button>
+      <button class="total">Add to total</button>
     </div>
 
   </script>
